@@ -8,8 +8,12 @@ class CategoriaEnum(str, Enum):
     categoria3 = "categoria3"
 
 class Vendas(BaseModel):
+    """
+    Melhoria de documentacao
+    """
     email: EmailStr
     data: datetime
+    valor: PositiveFloat
     produto: str
     quantidade: PositiveInt
     categoria: CategoriaEnum
