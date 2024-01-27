@@ -5,11 +5,16 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - name: primeira CI nossa
-              run: echo hello hello 
+            - name: Baixar o repositório
+              uses: actions/checkout@v4
 
-            - name: o que tem aqui
-              run: echo $(ls) 
+            - name: Instalar o Python
+              uses: actions/setup-python@v5
+              with:
+                python-version: ${{ matrix.python-version }}
 
-            - name: qual diretoria
-              run: echo $(pwd) 
+            - name: Instalo as libs
+              run: pip install -r requirements.txt
+
+            - name: rodar minha rotina de testes
+              run: pytest tests/test_contrato.py 
