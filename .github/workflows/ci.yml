@@ -1,0 +1,16 @@
+name: ci
+
+on: pull_request
+jobs:
+    test:
+        runs-on: ubunto-latest
+
+        steps:
+            - name: primeira CI nossa
+              run: echo hello hello 
+
+            - name: o que tem aqui
+              run: echo $(ls) 
+
+            - name: qual diretoria
+              run: echo $(pwd) 
