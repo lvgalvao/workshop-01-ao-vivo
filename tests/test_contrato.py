@@ -44,7 +44,7 @@ def test_validacao_categoria():
         "valor": 100.50,
         "produto": "Produto Y",
         "quantidade": 1,
-        "categoria": 493.50
+        "categoria": "categoria inexistente",
     }
 
     with pytest.raises(ValidationError):
