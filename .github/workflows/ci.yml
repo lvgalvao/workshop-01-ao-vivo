@@ -17,5 +17,8 @@ jobs:
               with:
                 python-version: ${{ matrix.python-version }}
 
-            - name: qual diretoria
-              run: echo $(pwd) 
+            - name: Instalo as libs
+              run: pip install -r requirements.txt
+
+            - name: rodar minha rotina de testes
+              run: pytest tests/test_contrato.py 
