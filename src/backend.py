@@ -1,5 +1,21 @@
 import pandas as pd
 from contrato import Vendas
+from dotenv import load_dotenv
+import os
+
+load_dotenv(".env")
+
+# Lê as variáveis de ambiente
+POSTGRES_USER = os.getenv('POSTGRES_USER')
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+POSTGRES_HOST = os.getenv('POSTGRES_HOST')
+POSTGRES_PORT = os.getenv('POSTGRES_PORT')
+POSTGRES_DB = os.getenv('POSTGRES_DB')
+
+# Cria a URL de conexão com o banco de dados
+DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
+# Carrega as variáveis de ambiente
 
 def process_excel(uploaded_file):
     try:
@@ -17,9 +33,12 @@ def process_excel(uploaded_file):
             except Exception as e:
                 raise ValueError(f"Erro na linha {index + 2}: {e}")
 
-        return True, None
+        return df, True, None
 
     except ValueError as ve:
-        return False, str(ve)
+        return df, False, str(ve)
     except Exception as e:
-        return False, f"Erro inesperado: {str(e)}"
+        return df, False, f"Erro inesperado: {str(e)}"
+    
+def excel_to_sql(df):
+    df.to_sql('vendas', con=DATABASE_URL, if_exists='replace', index=False)
