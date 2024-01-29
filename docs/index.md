@@ -1,3 +1,5 @@
-# Welcome to MkDocs
+## Contrato
 
 ::: src.contrato.Vendas
+
+::: tests.test_contrato
