@@ -49,7 +49,6 @@ def test_vendas_com_dados_invalidos():
     with pytest.raises(ValidationError):
         Vendas(**dados_invalidos)
 
-# Teste de validação de categoria
 def test_validacao_categoria():
     """
     Testa a validação da categoria na criação de uma instância da classe Vendas.
